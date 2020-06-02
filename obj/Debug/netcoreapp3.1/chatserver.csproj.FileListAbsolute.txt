@@ -29,6 +29,7 @@
 /mnt/c/Users/stkaiser/OneDrive/dev/chatserver/obj/Debug/netcoreapp3.1/staticwebassets/chatserver.StaticWebAssets.xml
 /mnt/c/Users/stkaiser/OneDrive/dev/chatserver/obj/Debug/netcoreapp3.1/chatserver.dll
 /mnt/c/Users/stkaiser/OneDrive/dev/chatserver/obj/Debug/netcoreapp3.1/chatserver.pdb
+C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\appsettings-template.json
 C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -40,6 +41,10 @@ C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\chatserver.dll
 C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\chatserver.pdb
 C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\chatserver.Views.dll
 C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\chatserver.Views.pdb
+C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\AngleSharp.dll
+C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\AngleSharp.Css.dll
+C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\HtmlSanitizer.dll
+C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\Markdig.dll
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.csprojAssemblyReference.cache
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.AssemblyInfoInputs.cache
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.AssemblyInfo.cs
@@ -60,13 +65,9 @@ C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\Razor\Pages\_V
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.RazorTargetAssemblyInfo.cache
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.RazorTargetAssemblyInfo.cs
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.Views.pdb
+C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.csproj.CopyComplete
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\staticwebassets\chatserver.StaticWebAssets.Manifest.cache
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\staticwebassets\chatserver.StaticWebAssets.xml
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.dll
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.pdb
 C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.genruntimeconfig.cache
-C:\Users\stkaiser\OneDrive\dev\chatserver\obj\Debug\netcoreapp3.1\chatserver.csproj.CopyComplete
-C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\AngleSharp.dll
-C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\AngleSharp.Css.dll
-C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\HtmlSanitizer.dll
-C:\Users\stkaiser\OneDrive\dev\chatserver\bin\Debug\netcoreapp3.1\Markdig.dll

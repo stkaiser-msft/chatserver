@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SignalR;
 
 namespace chatserver
 {
@@ -24,7 +25,15 @@ namespace chatserver
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR();
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.EnableDetailedErrors = true;
+            });
+            // workaround for hub options https://github.com/dotnet/aspnetcore/issues/15085
+            services.Configure<HubOptions>(options =>
+            {
+                options.MaximumReceiveMessageSize = 1048576;
+            });
             services.AddRazorPages();
         }
 
