@@ -1,0 +1,137 @@
+﻿
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    /* Vertically center the text there */
+}
+
+body {
+    /*    padding-top: 50px;*/
+    padding-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.copybutton :hover {
+    color: #333;
+    background-color: #333;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+h4 {
+    color: #ddd;
+}
+
+h5 {
+    font-variant: small-caps;
+    color: #333;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.chatcontainer {}
+
+#discussion {
+    /*overflow-y: scroll;*/
+    margin-right: 150px;
+}
+
+#userlist {
+    position: fixed;
+    background-color: #eee;
+    width: 150px;
+    height: 100%;
+    top: 50px;
+    right: 0px;
+    padding: 3px 3px 3px 3px;
+}
+
+.textinput {
+    width: 100%;
+    margin-bottom: 0rem;
+}
+
+.info {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+#input {
+    margin-top: 5px;
+}
+
+.chat {
+    display: flex;
+}
+
+.user {
+    /*border: 1px solid #cccccc;*/
+    background-color: #eee;
+    padding: 4px;
+    width: 100px;
+    overflow-y: hidden;
+    overflow-wrap: break-word;
+    border-radius: 4px;
+    margin: 1px;
+}
+
+#userlist .user {
+    padding: 4px;
+    width: 140px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+}
+
+
+.message {
+    /*border: 1px solid #cccccc;*/
+    padding: 4px;
+    width: 90%;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.copybutton {
+    width: 20px;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    letter-spacing: -.05rem;
+    cursor: pointer;
+    color: #555;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*    max-width: 800px;
+*/
+}

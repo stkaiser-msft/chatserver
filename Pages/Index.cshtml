@@ -1,0 +1,152 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="eight columns">
+                <h5>Encrypted — Ephemeral — Secure</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div id="discussion" class="ten columns"></div>
+            <div id="userlist">
+                <h5>people</h5><div id="users"></div>
+            </div>
+                <div class="row" >
+                    <div class="eight columns">
+                        <textarea class="textinput" rows="4" id="message" autofocus></textarea>
+                    </div>
+                    <div class="one column">
+                        <input type="button" id="sendmessage" value="Send" />
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="six columns" style="line-height: 0">
+                        <span class="info"><b>Ctrl+Enter</b> to send.</span>
+                    </div>
+                </div>
+            <!--<ul id="discussion"></ul>-->
+        </div>
+    </div>
+        <!--Script references. -->
+        <!--Reference the SignalR library. -->
+        <script type="text/javascript" src="lib/signalr.min.js"></script>
+        <!--Add script to update the page and send messages.-->
+        <script type="text/javascript">
+            function KeyPress(e) {
+                var evtobj = window.event ? event : e
+                // handle Ctrl+Enter
+                if (evtobj.keyCode == 13 && evtobj.ctrlKey) {
+                    document.getElementById('sendmessage').click();
+                };
+            }
+
+            document.onkeydown = KeyPress;
+            document.addEventListener('DOMContentLoaded', function () {
+
+                var messageInput = document.getElementById('message');
+
+                // Get the user name and store it to prepend to messages.
+                // Set initial focus to message input box.
+                messageInput.focus();
+
+                // Start the connection.
+                var connection = new signalR.HubConnectionBuilder()
+                    .withUrl('/chat')
+                    .withAutomaticReconnect()
+                    .build();
+
+                var name;
+                console.log(`name = ${name}`);
+                if (!name || name === "null") {
+                    name = getUserName();
+                }
+                // Create a function that the hub can call to broadcast messages.
+                connection.on('broadcastMessage', function (name, message) {
+                    var chatDiv = document.createElement("div");
+                    chatDiv.className = "chat";
+                    chatDiv.innerHTML = '<div class="user" style="background-color:' + colorFromString(name) + '"><strong>' + name
+                        + '</strong></div><div class="message">' + message + '</div><span class="copybutton" onclick="copyMessage(this);">🗎</span></div>';
+                    document.getElementById('discussion').appendChild(chatDiv);
+                });
+                connection.on("nameList", function (names) {
+                    console.log(names);
+                    var nameDiv = document.getElementById("users");
+                    nameDiv.innerHTML = "";
+                    names.forEach(function (x) {
+                        var newDiv = document.createElement("div");
+                        newDiv.className = "user";
+                        newDiv.style = "background-color:" + colorFromString(x);
+                        newDiv.innerHTML = x;
+                        nameDiv.appendChild(newDiv);
+                    });
+                });
+                // Transport fallback functionality is now built into start.
+                connection.start()
+                    .then(function () {
+                        console.log('connection started');
+                        connection.invoke("registerName", name);
+                        document.getElementById('sendmessage').addEventListener('click', function (event) {
+                            // Call the Send method on the hub.
+                            if (messageInput.value.length > 0) {
+                                connection.invoke('send', name, messageInput.value);
+                            }
+
+                            // Clear text box and reset focus for next comment.
+                            messageInput.value = '';
+                            messageInput.focus();
+                            event.preventDefault();
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                    });
+            });
+            function htmlEncode(value) {
+                // TODO this doesn't work; remove jquery
+                var encodedValue = $('<div />').text(value).html();
+                return encodedValue;
+            }
+            function getUserName() {
+                var answer = prompt('Enter your name:', '');
+                displayName = answer || "anon_" + Math.floor(Math.random() * 1000);
+                displayName = displayName.substr(0, 50);
+                return displayName;
+            }
+            function colorFromString(input_str) {
+
+                // set the minimum value to be used for each R, G, B (0-255)
+                var base = 200;
+
+                // get a checksum
+                var seed = 0; for (var i in input_str) { seed += input_str.charCodeAt(i) * (i + 1); }
+
+                var rand_1 = Math.abs((Math.sin(seed++) * 10000)) % 256;
+                var rand_2 = Math.abs((Math.sin(seed++) * 10000)) % 256;
+                var rand_3 = Math.abs((Math.sin(seed++) * 10000)) % 256;
+
+                // build color
+                var red = base + Math.round(rand_1 * (1 - base / 255));
+                var green = base + Math.round(rand_2 * (1 - base / 255));
+                var blue = base + Math.round(rand_3 * (1 - base / 255));
+                return "rgb(" + red + "," + green + "," + blue + ")";
+            }
+            function copyMessage(element) {
+                var msg = element.previousElementSibling;
+                navigator.clipboard.writeText(msg.innerText).then(function () {
+                    console.log("copied")
+                    var buttons = document.querySelectorAll(".copybutton");
+                    buttons.forEach(x => {
+                        x.innerText = "🗎";
+                    });
+                    element.innerText = "✔"
+                    element.style.backgroundImage = "none";
+                }, function () {
+                    console.log("copy failed");
+                }
+                );
+            }
+        </script>
