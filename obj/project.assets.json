@@ -220,17 +220,21 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\stkaiser\\.nuget\\packages\\": {}
+    "C:\\Users\\stkaiser\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\stkaiser\\OneDrive\\dev\\chatserver\\chatserver.csproj",
+      "projectUniqueName": "C:\\Users\\stkaiser\\OneDrive\\dev\\chatserver\\chatserver.csproj",
       "projectName": "chatserver",
-      "projectPath": "c:\\Users\\stkaiser\\OneDrive\\dev\\chatserver\\chatserver.csproj",
+      "projectPath": "C:\\Users\\stkaiser\\OneDrive\\dev\\chatserver\\chatserver.csproj",
       "packagesPath": "C:\\Users\\stkaiser\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\stkaiser\\OneDrive\\dev\\chatserver\\obj\\",
+      "outputPath": "C:\\Users\\stkaiser\\OneDrive\\dev\\chatserver\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\stkaiser\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -275,12 +279,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.2, 3.1.2]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
