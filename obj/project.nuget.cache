@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vyExx+le3Z6/SItL1C/qN4AM7DrQvdjnnjKpdYV05yJglZOeywAXZtsLaecWZv2Lk0MauK6SIDxquadgW5uoHQ==",
+  "dgSpecHash": "aG92Qqs+SoEgp/KjS/q4R7MMdsS68P8mtk9ArlpSr1/pBrHjwb0wVMHdRaeaitTV0BVx9gYhoEVsnhNoEcpPJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\stkaiser\\OneDrive\\dev\\chatserver\\chatserver.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,8 @@
     "C:\\Users\\stkaiser\\.nuget\\packages\\htmlsanitizer\\5.0.319\\htmlsanitizer.5.0.319.nupkg.sha512",
     "C:\\Users\\stkaiser\\.nuget\\packages\\markdig\\0.20.0\\markdig.0.20.0.nupkg.sha512",
     "C:\\Users\\stkaiser\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\stkaiser\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512"
+    "C:\\Users\\stkaiser\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
+    "C:\\Users\\stkaiser\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []
 }

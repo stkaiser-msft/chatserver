@@ -105,11 +105,6 @@
                         console.error(error.message);
                     });
             });
-            function htmlEncode(value) {
-                // TODO this doesn't work; remove jquery
-                var encodedValue = $('<div />').text(value).html();
-                return encodedValue;
-            }
             function getUserName() {
                 var answer = prompt('Enter your name:', '');
                 displayName = answer || "anon_" + Math.floor(Math.random() * 1000);
@@ -117,17 +112,14 @@
                 return displayName;
             }
             function colorFromString(input_str) {
-
                 // set the minimum value to be used for each R, G, B (0-255)
                 var base = 200;
-
                 // get a checksum
                 var seed = 0; for (var i in input_str) { seed += input_str.charCodeAt(i) * (i + 1); }
-
+                // get deterministic (not random 😊) values based on name
                 var rand_1 = Math.abs((Math.sin(seed++) * 10000)) % 256;
                 var rand_2 = Math.abs((Math.sin(seed++) * 10000)) % 256;
                 var rand_3 = Math.abs((Math.sin(seed++) * 10000)) % 256;
-
                 // build color
                 var red = base + Math.round(rand_1 * (1 - base / 255));
                 var green = base + Math.round(rand_2 * (1 - base / 255));
@@ -143,7 +135,6 @@
                         x.innerText = "🗎";
                     });
                     element.innerText = "✔"
-                    element.style.backgroundImage = "none";
                 }, function () {
                     console.log("copy failed");
                 }
