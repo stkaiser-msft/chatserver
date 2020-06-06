@@ -73,14 +73,17 @@
                     document.getElementById('discussion').appendChild(chatDiv);
                 });
                 connection.on("nameList", function (names) {
+                    names = JSON.parse(names);
                     console.log(names);
                     var nameDiv = document.getElementById("users");
                     nameDiv.innerHTML = "";
                     names.forEach(function (x) {
                         var newDiv = document.createElement("div");
                         newDiv.className = "user";
-                        newDiv.style = "background-color:" + colorFromString(x);
-                        newDiv.innerHTML = x;
+                        newDiv.style = "background-color:" + colorFromString(x.Name);
+                        newDiv.innerText = x.Name;
+                        newDiv.title = x.Status;
+                        newDiv.classList += " " + x.Status;
                         nameDiv.appendChild(newDiv);
                     });
                 });
@@ -113,7 +116,7 @@
             }
             function colorFromString(input_str) {
                 // set the minimum value to be used for each R, G, B (0-255)
-                var base = 200;
+                var base = 160;
                 // get a checksum
                 var seed = 0; for (var i in input_str) { seed += input_str.charCodeAt(i) * (i + 1); }
                 // get deterministic (not random 😊) values based on name
