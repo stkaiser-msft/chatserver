@@ -11,7 +11,7 @@ namespace chatserver.Hubs
     public class ChatHub : Hub
     {
         private static readonly ConcurrentDictionary<string, User> _names = new ConcurrentDictionary<string, User>();
-        
+
         public async Task Send(string name, string message)
         {
             // Call the broadcastMessage method to update clients.
@@ -26,15 +26,12 @@ namespace chatserver.Hubs
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             User u;
-            if (_names.TryRemove(Context.ConnectionId, out u)) {
-                u.Status = "Disconnected";
-                u.StatusTime = DateTime.Now;
-                _names.TryAdd(Context.ConnectionId, u);
-            }
-            await SendNames();
-            await base.OnDisconnectedAsync(exception);
+                // Client closed their browser or otherwise intentionally disconnected
+                _names.TryRemove(Context.ConnectionId, out u);
+                await SendNames();
+                await base.OnDisconnectedAsync(exception);
         }
-        
+
         public async Task RegisterName(string name)
         {
             // Add a name to the list.
@@ -45,18 +42,20 @@ namespace chatserver.Hubs
             {
                 User u = new User();
                 u.ConnectionId = Context.ConnectionId;
-                if (nameExists.Count() > 0) {
+                if (nameExists.Count() > 0)
+                {
                     // if the name exists, append an identifier to this new one
-                    u.Name = newName + "-" + Context.ConnectionId.Substring(0,3);                    
+                    u.Name = newName + "-" + Context.ConnectionId.Substring(0, 3);
                 }
-                else {
+                else
+                {
                     u.Name = newName;
                 }
                 u.ConnectionTime = DateTime.Now;
                 u.Status = "Connected";
                 u.StatusTime = DateTime.Now;
                 _names.TryAdd(Context.ConnectionId, u);
-                
+
             }
             await SendNames();
         }
@@ -65,12 +64,12 @@ namespace chatserver.Hubs
         {
             // Send the name list to all clients.
             var names = _names.Values
-                .Select(u => new {u.Name, u.Status})
+                .Select(u => new { u.Name, u.Status })
                 .OrderBy(u => u.Name)
                 .ToArray();
             var namesToSend = JsonConvert.SerializeObject(names);
             await Clients.All.SendAsync("nameList", namesToSend);
-            
+
         }
 
     }

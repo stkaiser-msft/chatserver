@@ -68,6 +68,9 @@ h5 {
 .Disconnected {
     color: #888;
 }
+.systemmessage {
+    font-size: x-small;
+}
 
 .textinput {
     width: 100%;

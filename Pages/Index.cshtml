@@ -43,7 +43,7 @@
                     document.getElementById('sendmessage').click();
                 };
             }
-
+            var name;
             document.onkeydown = KeyPress;
             document.addEventListener('DOMContentLoaded', function () {
 
@@ -59,7 +59,6 @@
                     .withAutomaticReconnect()
                     .build();
 
-                var name;
                 console.log(`name = ${name}`);
                 if (!name || name === "null") {
                     name = getUserName();
@@ -86,6 +85,38 @@
                         newDiv.classList += " " + x.Status;
                         nameDiv.appendChild(newDiv);
                     });
+                connection.onreconnecting(error => {
+                    console.assert(connection.state === signalR.HubConnectionState.Reconnecting);
+
+                    document.getElementById("message").disabled = true;
+                    document.getElementById("sendmessage").disabled = true;
+
+                    const div = document.createElement("div");
+                    div.className = "systemmessage";
+                    div.textContent = `Connection lost due to error "${error}". Reconnecting.`;
+                    document.getElementById("discussion").appendChild(div);
+                    });
+                });
+                connection.onreconnected(connectionId => {
+                    console.assert(connection.state === signalR.HubConnectionState.Connected);
+                    connection.invoke("registerName", name);
+                    document.getElementById("message").disabled = false;
+                    document.getElementById("sendmessage").disabled = false;
+
+                    const div = document.createElement("div");
+                    div.className = "systemmessage";
+                    div.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
+                    document.getElementById("discussion").appendChild(div);
+                });
+                connection.onclose(error => {
+                    console.assert(connection.state === signalR.HubConnectionState.Disconnected);
+
+                    document.getElementById("message").disabled = true;
+
+                    const div = document.createElement("div");
+                    div.className = "systemmessage";
+                    div.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
+                    document.getElementById("discussion").appendChild(div);
                 });
                 // Transport fallback functionality is now built into start.
                 connection.start()
