@@ -2,23 +2,84 @@
 @inject IConfiguration Configuration
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <script type="text/javascript">
-        var sdkInstance = "appInsightsSDK"; window[sdkInstance] = "appInsights"; var aiName = window[sdkInstance], aisdk = window[aiName] || function (n) { var o = { config: n, initialize: !0 }, t = document, e = window, i = "script"; setTimeout(function () { var e = t.createElement(i); e.src = n.url || "https://az416426.vo.msecnd.net/scripts/b/ai.2.min.js", t.getElementsByTagName(i)[0].parentNode.appendChild(e) }); try { o.cookie = t.cookie } catch (e) { } function a(n) { o[n] = function () { var e = arguments; o.queue.push(function () { o[n].apply(o, e) }) } } o.queue = [], o.version = 2; for (var s = ["Event", "PageView", "Exception", "Trace", "DependencyData", "Metric", "PageViewPerformance"]; s.length;)a("track" + s.pop()); var r = "Track", c = r + "Page"; a("start" + c), a("stop" + c); var u = r + "Event"; if (a("start" + u), a("stop" + u), a("addTelemetryInitializer"), a("setAuthenticatedUserContext"), a("clearAuthenticatedUserContext"), a("flush"), o.SeverityLevel = { Verbose: 0, Information: 1, Warning: 2, Error: 3, Critical: 4 }, !(!0 === n.disableExceptionTracking || n.extensionConfig && n.extensionConfig.ApplicationInsightsAnalytics && !0 === n.extensionConfig.ApplicationInsightsAnalytics.disableExceptionTracking)) { a("_" + (s = "onerror")); var p = e[s]; e[s] = function (e, n, t, i, a) { var r = p && p(e, n, t, i, a); return !0 !== r && o["_" + s]({ message: e, url: n, lineNumber: t, columnNumber: i, error: a }), r }, n.autoExceptionInstrumented = !0 } return o }(
-            {
-                
+        var sdkInstance = "appInsightsSDK";
+        window[sdkInstance] = "appInsights";
+        var aiName = window[sdkInstance],
+            aisdk = window[aiName] || function (n) {
+                var o = {
+                        config: n,
+                        initialize: !0
+                    },
+                    t = document,
+                    e = window,
+                    i = "script";
+                setTimeout(function () {
+                    var e = t.createElement(i);
+                    e.src = n.url || "https://az416426.vo.msecnd.net/scripts/b/ai.2.min.js", t
+                        .getElementsByTagName(i)[0].parentNode.appendChild(e)
+                });
+                try {
+                    o.cookie = t.cookie
+                } catch (e) {}
+
+                function a(n) {
+                    o[n] = function () {
+                        var e = arguments;
+                        o.queue.push(function () {
+                            o[n].apply(o, e)
+                        })
+                    }
+                }
+                o.queue = [], o.version = 2;
+                for (var s = ["Event", "PageView", "Exception", "Trace", "DependencyData", "Metric",
+                        "PageViewPerformance"
+                    ]; s.length;) a("track" + s.pop());
+                var r = "Track",
+                    c = r + "Page";
+                a("start" + c), a("stop" + c);
+                var u = r + "Event";
+                if (a("start" + u), a("stop" + u), a("addTelemetryInitializer"), a("setAuthenticatedUserContext"), a(
+                        "clearAuthenticatedUserContext"), a("flush"), o.SeverityLevel = {
+                        Verbose: 0,
+                        Information: 1,
+                        Warning: 2,
+                        Error: 3,
+                        Critical: 4
+                    }, !(!0 === n.disableExceptionTracking || n.extensionConfig && n.extensionConfig
+                        .ApplicationInsightsAnalytics && !0 === n.extensionConfig.ApplicationInsightsAnalytics
+                        .disableExceptionTracking)) {
+                    a("_" + (s = "onerror"));
+                    var p = e[s];
+                    e[s] = function (e, n, t, i, a) {
+                        var r = p && p(e, n, t, i, a);
+                        return !0 !== r && o["_" + s]({
+                            message: e,
+                            url: n,
+                            lineNumber: t,
+                            columnNumber: i,
+                            error: a
+                        }), r
+                    }, n.autoExceptionInstrumented = !0
+                }
+                return o
+            }({
+
                 instrumentationKey: '@Environment.GetEnvironmentVariable("APPSETTING_AppInsightsKey")'
-            }
-        ); (window[aiName] = aisdk).queue && 0 === aisdk.queue.length && aisdk.trackPageView({});
+            });
+        (window[aiName] = aisdk).queue && 0 === aisdk.queue.length && aisdk.trackPageView({});
     </script>
 
     <link href="css/skeleton.css" rel="stylesheet" />
     <link href="css/normalize.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
 </head>
+
 <body>
     <div class="container">
         <main role="main" class="pb-3">
@@ -27,9 +88,18 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - chatserver - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+        &copy; 2020 - chatserver
+        <div id="privacy" class="tooltip"> - <a href="">Privacy</a>
+            <div class="tooltiptext">
+                <h3>Privacy</h3>
+                    <p>No messages are stored, ever. <br>
+                    User list is temporarily kept in memory.<br>
+                    No cookies.<br>
+                    HTTPS only.</p>
+            </div>
         </div>
+
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -38,4 +108,5 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>
