@@ -13,9 +13,10 @@ namespace chatserver
         {
             string output;
             HtmlSanitizer hs = new HtmlSanitizer();
+            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
             try
             {
-                output = hs.Sanitize(Markdown.ToHtml(input));
+                output = hs.Sanitize(Markdown.ToHtml(input, pipeline));
             }
             catch (Exception) {
                 output = "Error rendering message";
