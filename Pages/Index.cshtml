@@ -21,11 +21,12 @@
                     </div>
                     <div class="one column">
                         <input type="button" id="sendmessage" value="Send" />
+                        <input type="button" id="sendrawmessage" value="Send Code" />
                     </div>
                 </div>
                 <div class="row" >
                     <div class="six columns" style="line-height: 0">
-                        <span class="info"><b>Ctrl+Enter</b> to send.</span>
+                        <span class="info"><b>Ctrl+Enter</b> to send.   </span>
                     </div>
                 </div>
             <!--<ul id="discussion"></ul>-->
@@ -39,7 +40,10 @@
             function KeyPress(e) {
                 var evtobj = window.event ? event : e
                 // handle Ctrl+Enter
-                if (evtobj.keyCode == 13 && evtobj.ctrlKey) {
+                if (evtobj.keyCode == 13 && evtobj.ctrlKey && evtobj.shiftKey) {
+                    document.getElementById('sendrawmessage').click();
+                }
+                else if (evtobj.keyCode == 13 && evtobj.ctrlKey) {
                     document.getElementById('sendmessage').click();
                 };
             }
@@ -125,19 +129,33 @@
                         connection.invoke("registerName", name);
                         document.getElementById('sendmessage').addEventListener('click', function (event) {
                             // Call the Send method on the hub.
-                            if (messageInput.value.length > 0) {
-                                connection.invoke('send', name, messageInput.value);
-                            }
-
-                            // Clear text box and reset focus for next comment.
-                            messageInput.value = '';
-                            messageInput.focus();
+                            sendMessage(document.getElementById('message').value)
                             event.preventDefault();
                         });
+                            document.getElementById('sendrawmessage').addEventListener('click', function (event) {
+                            // Call the Send method on the hub.
+                            sendMessage(document.getElementById('message').value, true)
+                            event.preventDefault();
+                        });
+
                     })
                     .catch(error => {
                         console.error(error.message);
                     });
+                function sendMessage(message, raw) {
+                                var messageInput = document.getElementById('message');
+                                var msg = messageInput.value;
+                                if (msg.length > 0) {
+                                    if (raw) {
+                                        msg = "```\n" + msg + "\n```";
+                                    }
+                                    connection.invoke('send', name, msg);
+                                }
+
+                                // Clear text box and reset focus for next comment.
+                                messageInput.value = '';
+                                messageInput.focus();
+                }
             });
             function getUserName() {
                 var answer = prompt('Enter your name:', '');

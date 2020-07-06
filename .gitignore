@@ -2,3 +2,5 @@ appsettings.json
 bin/
 obj/
 .vscode/settings.json
+Pages/Deployment/chatserver.json
+Pages/Deployment/chatserver-parameters.json
