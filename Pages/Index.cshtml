@@ -21,7 +21,7 @@
                     </div>
                     <div class="one column">
                         <input type="button" id="sendmessage" value="Send" />
-                        <input type="button" id="sendrawmessage" value="Send Code" />
+                        <input type="button" id="sendrawmessage" title="Send as raw text" value="Send Code" />
                     </div>
                 </div>
                 <div class="row" >
@@ -72,7 +72,7 @@
                     var chatDiv = document.createElement("div");
                     chatDiv.className = "chat";
                     chatDiv.innerHTML = '<div class="user" style="background-color:' + colorFromString(name) + '"><strong>' + name
-                        + '</strong></div><div class="message">' + message + '</div><span class="copybutton" onclick="copyMessage(this);">🗎</span></div>';
+                        + '</strong></div><div class="message">' + message + '</div><span class="copybutton" title="Copy to clipboard" onclick="copyMessage(this);">🗎</span></div>';
                     document.getElementById('discussion').appendChild(chatDiv);
                 });
                 connection.on("nameList", function (names) {
